@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Портфолио · Программист</title>
+  <!-- шрифт и иконки -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== ПЕРЕМЕННЫЕ ДЛЯ ТЕМ (по умолчанию тёмная) ===== */
+    :root {
+      --bg-body: #0c0f14;
+      --bg-container: #141a22;
+      --border-container: #2a323d;
+      --bg-avatar: linear-gradient(145deg, #2b3648, #1d2532);
+      --avatar-border: #3d5068;
+      --text-primary: #e8edf5;
+      --text-secondary: #9aafcf;
+      --text-bio: #d3def0;
+      --text-skill: #e6efff;
+      --text-footer: #6a81a5;
+      --bg-bio: #1a232e;
+      --border-bio: #4b7eff;
+      --bg-skill: #1f2937;
+      --border-skill: #2f3c4e;
+      --bg-skill-hover: #253240;
+      --bg-project: #1a232e;
+      --border-project: #2d3848;
+      --bg-project-hover: #1f2b3b;
+      --text-project: #c9ddff;
+      --text-project-p: #a5bada;
+      --border-footer: #293442;
+      --shadow: rgba(0,0,0,0.7);
+      --skill-dot: #3a4c64;
+      --skill-filled: #5b8cff;
+      --social-color: #b0c9ec;
+      --avatar-color: #93b4e8;
+      --icon-color: #6f9aff;
+      --tagline-span: #5b7fb0;
+      --gradient-text: linear-gradient(to right, #d6e4ff, #a5c5ff);
+      --bio-span: #b2d0ff;
+      --section-title: #dce8ff;
+      --title-icon: #5b8cff;
+      --project-icon: #759aff;
+      --footer-icon: #4f7bdd;
+      --btn-bg: #1f2937;
+      --btn-border: #2f3c4e;
+      --btn-text: #9aafcf;
+      --btn-shadow: rgba(0,0,0,0.3);
+      --hobby-bg: #1a232e;
+      --hobby-border: #2d3848;
+      --hobby-text: #d3def0;
+      --hobby-icon: #ff8a5c;
+    }
+
+    /* ===== СВЕТЛАЯ ТЕМА ===== */
+    [data-theme="light"] {
+      --bg-body: #eef2f7;
+      --bg-container: #ffffff;
+      --border-container: #d0d9e8;
+      --bg-avatar: linear-gradient(145deg, #dce4f0, #c8d2e3);
+      --avatar-border: #b0c0d8;
+      --text-primary: #1a2433;
+      --text-secondary: #3d5068;
+      --text-bio: #1e2b3d;
+      --text-skill: #1a2433;
+      --text-footer: #4a5f7a;
+      --bg-bio: #e6edf6;
+      --border-bio: #4b7eff;
+      --bg-skill: #eaf0f8;
+      --border-skill: #c8d4e6;
+      --bg-skill-hover: #dce6f2;
+      --bg-project: #eaf0f8;
+      --border-project: #c8d4e6;
+      --bg-project-hover: #dee8f4;
+      --text-project: #1a2a44;
+      --text-project-p: #2f4a6a;
+      --border-footer: #d0d9e8;
+      --shadow: rgba(0,0,0,0.1);
+      --skill-dot: #b8c8de;
+      --skill-filled: #4b7eff;
+      --social-color: #4a5f7a;
+      --avatar-color: #4a6a9a;
+      --icon-color: #4b7eff;
+      --tagline-span: #6a8ab0;
+      --gradient-text: linear-gradient(to right, #1a3a6a, #4b7eff);
+      --bio-span: #2a5a9a;
+      --section-title: #1a2a44;
+      --title-icon: #4b7eff;
+      --project-icon: #4b7eff;
+      --footer-icon: #4b7eff;
+      --btn-bg: #eaf0f8;
+      --btn-border: #c8d4e6;
+      --btn-text: #3d5068;
+      --btn-shadow: rgba(0,0,0,0.08);
+      --hobby-bg: #eaf0f8;
+      --hobby-border: #c8d4e6;
+      --hobby-text: #1e2b3d;
+      --hobby-icon: #e8683a;
+    }
+
+    /* ===== РАНДОМНАЯ ТЕМА (динамически через JS) ===== */
+    [data-theme="random"] {
+      /* все переменные будут переопределены через JS */
+    }
+
+    /* ===== ОБЩИЕ СТИЛИ ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.4s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    body {
+      background: var(--bg-body);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: var(--bg-container);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 40px var(--shadow);
+      border: 1px solid var(--border-container);
+      position: relative;
+    }
+
+    /* ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМ ===== */
+    .theme-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.8rem;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: 3rem;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--btn-text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--btn-shadow);
+      z-index: 10;
+      font-weight: 500;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      border-color: var(--border-bio);
+      box-shadow: 0 6px 20px rgba(75, 126, 255, 0.25);
+    }
+
+    .theme-toggle i {
+      transition: transform 0.5s ease;
+    }
+
+    .theme-toggle:hover i {
+      transform: rotate(30deg);
+    }
+
+    .theme-toggle .toggle-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--btn-text);
+      white-space: nowrap;
+    }
+
+    /* ===== ПРОФИЛЬ ===== */
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      margin-top: 0.5rem;
+    }
+
+    .avatar {
+      background: var(--bg-avatar);
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.8rem;
+      color: var(--avatar-color);
+      border: 3px solid var(--avatar-border);
+      box-shadow: 0 8px 18px var(--shadow);
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.3rem;
+    }
+
+    .title-group .tagline {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tagline i {
+      color: var(--icon-color);
+      font-size: 1rem;
+    }
+
+    /* ===== СОЦИАЛЬНЫЕ СЕТИ - КРАСНАЯ ТЕНЬ ПРИ HOVER ===== */
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .social-links a {
+      color: var(--social-color);
+      font-size: 1.7rem;
+      transition: all 0.25s ease;
+      display: inline-block;
+      position: relative;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-4px) scale(1.15);
+      color: #ff3b3b;
+      filter: drop-shadow(0 0 18px rgba(255, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(255, 0, 0, 0.4));
+    }
+
+    /* ===== BIO ===== */
+    .bio {
+      background: var(--bg-bio);
+      padding: 1.6rem 2rem;
+      border-radius: 2rem;
+      margin-bottom: 3rem;
+      border-left: 6px solid var(--border-bio);
+      box-shadow: inset 0 2px 6px var(--shadow);
+    }
+
+    .bio p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-bio);
+      max-width: 800px;
+    }
+
+    .bio span {
+      color: var(--bio-span);
+      font-weight: 500;
+    }
+
+    /* ===== СКИЛЛЫ ===== */
+    .skills-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.8rem;
+      color: var(--section-title);
+    }
+
+    .section-title i {
+      color: var(--title-icon);
+      font-size: 2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--bg-skill);
+      padding: 1.4rem 0.8rem;
+      border-radius: 2rem;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      border: 1px solid var(--border-skill);
+      transition: 0.2s ease-in-out;
+      box-shadow: 0 6px 12px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-bio);
+      background: var(--bg-skill-hover);
+      box-shadow: 0 12px 24px rgba(30, 80, 200, 0.25);
+    }
+
+    .skill-icon {
+      font-size: 2.8rem;
+      color: var(--skill-filled);
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-skill);
+      letter-spacing: 0.2px;
+    }
+
+    .skill-level {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .skill-level span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: var(--skill-dot);
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+
+    .skill-level .filled {
+      background: var(--skill-filled);
+      box-shadow: 0 0 8px var(--skill-filled);
+    }
+
+    /* ===== ХОББИ ===== */
+    .hobbies-section {
+      margin-bottom: 3rem;
+    }
+
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .hobby-card {
+      background: var(--hobby-bg);
+      border: 1px solid var(--hobby-border);
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 6px 12px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: 0.2s ease;
+    }
+
+    .hobby-card:hover {
+      border-color: var(--border-bio);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(75, 126, 255, 0.15);
+    }
+
+    .hobby-card .hobby-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--section-title);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hobby-card .hobby-title i {
+      color: var(--hobby-icon);
+      font-size: 1.8rem;
+    }
+
+    .hobby-card .hobby-desc {
+      font-size: 1.05rem;
+      color: var(--hobby-text);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .hobby-card .hobby-desc i {
+      color: var(--hobby-icon);
+      margin: 0 0.2rem;
+    }
+
+    /* Фото кошечки */
+    .hobby-photo {
+      background: var(--hobby-bg);
+      border: 1px solid var(--hobby-border);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: 0 6px 12px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s ease;
+      min-height: 220px;
+    }
+
+    .hobby-photo:hover {
+      border-color: var(--border-bio);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(75, 126, 255, 0.15);
+    }
+
+    /* Стиль для реального фото */
+    .hobby-photo img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 1.5rem;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      border: 2px solid var(--hobby-border);
+      transition: 0.2s;
+    }
+
+    .hobby-photo img:hover {
+      border-color: var(--border-bio);
+      transform: scale(1.02);
+    }
+
+    /* ===== ПРОЕКТЫ ===== */
+    .projects-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.8rem;
+    }
+
+    .project-item {
+      background: var(--bg-project);
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.2rem;
+      border: 1px solid var(--border-project);
+      transition: 0.15s;
+    }
+
+    .project-item:hover {
+      border-color: var(--border-bio);
+      background: var(--bg-project-hover);
+    }
+
+    .project-item h3 {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--text-project);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .project-item p {
+      color: var(--text-project-p);
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .project-item i {
+      color: var(--project-icon);
+      width: 1.6rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 3.2rem;
+      border-top: 1px solid var(--border-footer);
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      color: var(--text-footer);
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .footer-note i {
+      color: var(--footer-icon);
+      margin-right: 4px;
+    }
+
+    /* ===== АДАПТИВ ===== */
+    @media (max-width: 768px) {
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      .profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .title-group h1 {
+        font-size: 2.2rem;
+      }
+      .bio {
+        padding: 1.2rem 1.2rem;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.9rem;
+      }
+      .skill-card {
+        padding: 1rem 0.4rem;
+      }
+      .skill-icon {
+        font-size: 2.2rem;
+      }
+      .projects-preview {
+        grid-template-columns: 1fr;
+      }
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.1rem;
+      }
+      .theme-toggle .toggle-label {
+        display: none;
+      }
+      .hobby-card {
+        padding: 1.4rem 1.2rem;
+      }
+      .hobby-photo {
+        padding: 1.2rem;
+        min-height: 180px;
+      }
+      .hobby-photo img {
+        max-width: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .skill-name {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+
+  <!-- ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМ ===== -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <i class="fas fa-moon" id="themeIcon"></i>
+    <span class="toggle-label" id="themeLabel">Тёмная</span>
+  </button>
+
+  <!-- ===== ПРОФИЛЬ ===== -->
+  <div class="profile">
+    <div class="avatar">
+      <i class="fas fa-code"></i>
+    </div>
+    <div class="title-group">
+      <h1>Дарья В.</h1>
+      <div class="tagline">
+        <i class="fas fa-terminal"></i> Full-stack разработчик
+        <span style="color:var(--tagline-span); margin:0 0.3rem;">•</span> 
+        <i class="fas fa-location-dot" style="color:var(--icon-color);"></i> Минск
+      </div>
+      <div class="social-links">
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BIO ===== -->
+  <div class="bio">
+    <p>
+      <i class="fas fa-quote-left" style="color:var(--border-bio); margin-right:8px;"></i>
+      Создаю чистый, масштабируемый код. 
+      <span>Java, Kotlin, Python</span> — мой стек.
+      Постоянно исследую новые технологии и делюсь опытом.
+    </p>
+  </div>
+
+  <!-- ===== СКИЛЛЫ ===== -->
+  <section class="skills-section">
+    <div class="section-title">
+      <i class="fas fa-cogs"></i>
+      <span>Технический стек &amp; скилы</span>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Java -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fab fa-java"></i></div>
+        <div class="skill-name">Java</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+        </div>
+      </div>
+      <!-- JavaFX -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-desktop"></i></div>
+        <div class="skill-name">JavaFX</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span>
+        </div>
+      </div>
+      <!-- Android + Kotlin -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fab fa-android"></i></div>
+        <div class="skill-name">Android + Kotlin</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span>
+        </div>
+      </div>
+      <!-- Python -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fab fa-python"></i></div>
+        <div class="skill-name">Python</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span>
+        </div>
+      </div>
+      <!-- Дополнительный скил: Spring -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+        <div class="skill-name">Spring Boot</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span>
+        </div>
+      </div>
+      <!-- Дополнительно: SQL -->
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-database"></i></div>
+        <div class="skill-name">SQL / PostgreSQL</div>
+        <div class="skill-level">
+          <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ХОББИ ===== -->
+  <section class="hobbies-section">
+    <div class="section-title">
+      <i class="fas fa-heart" style="color:var(--hobby-icon);"></i>
+      <span>Мои хобби</span>
+    </div>
+
+    <div class="hobbies-grid">
+      <!-- Карточка с описанием хобби -->
+      <div class="hobby-card">
+        <div class="hobby-title">
+          <i class="fas fa-paw"></i>
+          <span>Играть с кошкой</span>
+        </div>
+        <div class="hobby-desc">
+          <i class="fas fa-cat"></i> 
+          Обожаю проводить время со своей пушистой подругой. 
+          Игры с мячиком, лазерной указкой или просто 
+          <i class="fas fa-heart" style="color:var(--hobby-icon);"></i> 
+          обнимашки — лучшее завершение рабочего дня.
+        </div>
+      </div>
+
+      <!-- Фото кошечки с путём cat.jpg -->
+      <div class="hobby-photo">
+        <img src="cat.jpg" alt="Моя кошечка 🐱">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ПРОЕКТЫ ===== -->
+  <div style="margin-bottom: 0.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;">
+      <i class="fas fa-folder-open" style="color:var(--title-icon); font-size: 1.8rem;"></i>
+      <h3 style="font-weight: 500; font-size: 1.7rem; color:var(--section-title);">Недавние проекты</h3>
+    </div>
+    <div class="projects-preview">
+      <div class="project-item">
+        <h3><i class="fas fa-chart-line"></i> Desktop CRM</h3>
+        <p>JavaFX + H2, диаграммы, отчёты.</p>
+      </div>
+      <div class="project-item">
+        <h3><i class="fas fa-store"></i> FinTech App</h3>
+        <p>Android (Kotlin) + Room, Retrofit.</p>
+      </div>
+      <div class="project-item">
+        <h3><i class="fas fa-robot"></i> ML Pipeline</h3>
+        <p>Python (Pandas, Scikit-learn) + FastAPI.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer-note">
+    <span><i class="fas fa-code"></i> 5+ лет коммерческой разработки</span>
+    <span><i class="fas fa-rocket"></i> открыта к сотрудничеству</span>
+    <span><i class="fas fa-envelope"></i> daria.dev@example.com</span>
+  </div>
+
+</div>
+
+<!-- ===== JAVASCRIPT ДЛЯ ПЕРЕКЛЮЧЕНИЯ 3 ТЕМ ===== -->
+<script>
+  (function() {
+    const toggleBtn = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+    const html = document.documentElement;
+
+    let themeIndex = 0;
+
+    const savedIndex = localStorage.getItem('portfolio-theme-index');
+    if (savedIndex !== null) {
+      themeIndex = parseInt(savedIndex, 10);
+      applyTheme(themeIndex);
+    } else {
+      applyTheme(0);
+    }
+
+    toggleBtn.addEventListener('click', function() {
+      themeIndex = (themeIndex + 1) % 3;
+      applyTheme(themeIndex);
+      localStorage.setItem('portfolio-theme-index', String(themeIndex));
+    });
+
+    function applyTheme(index) {
+      if (index === 0) {
+        html.setAttribute('data-theme', 'dark');
+        icon.className = 'fas fa-moon';
+        label.textContent = 'Тёмная';
+        resetRandomStyles();
+        if (html.getAttribute('data-theme') === 'random') {
+          html.setAttribute('data-theme', 'dark');
+        }
+      } 
+      else if (index === 1) {
+        html.setAttribute('data-theme', 'light');
+        icon.className = 'fas fa-sun';
+        label.textContent = 'Светлая';
+        resetRandomStyles();
+        if (html.getAttribute('data-theme') === 'random') {
+          html.setAttribute('data-theme', 'light');
+        }
+      } 
+      else if (index === 2) {
+        html.setAttribute('data-theme', 'random');
+        icon.className = 'fas fa-palette';
+        label.textContent = 'Рандом';
+
+        const hue = Math.floor(Math.random() * 360);
+        const sat = 60 + Math.floor(Math.random() * 35);
+        const lig = 40 + Math.floor(Math.random() * 30);
+
+        const accent = `hsl(${hue}, ${sat}%, ${lig}%)`;
+        const accentLight = `hsl(${hue}, ${sat}%, ${lig + 20}%)`;
+        const accentDark = `hsl(${hue}, ${sat}%, ${lig - 15}%)`;
+        const accentBorder = `hsl(${hue}, ${sat}%, ${lig + 5}%)`;
+
+        const bodyBg = `hsl(${hue}, ${sat - 30}%, 8%)`;
+        const containerBg = `hsl(${hue}, ${sat - 25}%, 12%)`;
+        const containerBorder = `hsl(${hue}, ${sat - 20}%, 25%)`;
+
+        const textPrimary = `hsl(${hue}, ${sat - 30}%, 92%)`;
+        const textSecondary = `hsl(${hue}, ${sat - 20}%, 70%)`;
+        const textBio = `hsl(${hue}, ${sat - 20}%, 85%)`;
+        const textSkill = `hsl(${hue}, ${sat - 20}%, 90%)`;
+        const textFooter = `hsl(${hue}, ${sat - 25}%, 55%)`;
+
+        const bgBio = `hsl(${hue}, ${sat - 25}%, 16%)`;
+        const bgSkill = `hsl(${hue}, ${sat - 25}%, 18%)`;
+        const bgSkillHover = `hsl(${hue}, ${sat - 20}%, 24%)`;
+        const bgProject = `hsl(${hue}, ${sat - 25}%, 16%)`;
+        const bgProjectHover = `hsl(${hue}, ${sat - 20}%, 22%)`;
+        const borderSkill = `hsl(${hue}, ${sat - 20}%, 28%)`;
+        const borderProject = `hsl(${hue}, ${sat - 20}%, 26%)`;
+        const borderFooter = `hsl(${hue}, ${sat - 25}%, 22%)`;
+
+        const skillDot = `hsl(${hue}, ${sat - 30}%, 35%)`;
+        const skillFilled = accent;
+
+        const grad1 = `hsl(${hue + 30}, ${sat}%, ${lig + 10}%)`;
+        const grad2 = `hsl(${hue - 20}, ${sat}%, ${lig + 20}%)`;
+        const gradientText = `linear-gradient(to right, ${grad1}, ${grad2})`;
+
+        const btnBg = `hsl(${hue}, ${sat - 20}%, 22%)`;
+        const btnBorder = `hsl(${hue}, ${sat - 15}%, 35%)`;
+        const btnText = `hsl(${hue}, ${sat - 20}%, 80%)`;
+        const btnShadow = `hsla(${hue}, ${sat}%, ${lig}%, 0.15)`;
+
+        const hobbyBg = `hsl(${hue}, ${sat - 25}%, 16%)`;
+        const hobbyBorder = `hsl(${hue}, ${sat - 20}%, 26%)`;
+        const hobbyText = `hsl(${hue}, ${sat - 20}%, 85%)`;
+        const hobbyIcon = `hsl(${hue + 20}, ${sat + 10}%, ${lig + 10}%)`;
+
+        html.style.setProperty('--bg-body', bodyBg);
+        html.style.setProperty('--bg-container', containerBg);
+        html.style.setProperty('--border-container', containerBorder);
+        html.style.setProperty('--bg-avatar', `linear-gradient(145deg, ${containerBg}, ${accentDark})`);
+        html.style.setProperty('--avatar-border', accentBorder);
+        html.style.setProperty('--text-primary', textPrimary);
+        html.style.setProperty('--text-secondary', textSecondary);
+        html.style.setProperty('--text-bio', textBio);
+        html.style.setProperty('--text-skill', textSkill);
+        html.style.setProperty('--text-footer', textFooter);
+        html.style.setProperty('--bg-bio', bgBio);
+        html.style.setProperty('--border-bio', accent);
+        html.style.setProperty('--bg-skill', bgSkill);
+        html.style.setProperty('--border-skill', borderSkill);
+        html.style.setProperty('--bg-skill-hover', bgSkillHover);
+        html.style.setProperty('--bg-project', bgProject);
+        html.style.setProperty('--border-project', borderProject);
+        html.style.setProperty('--bg-project-hover', bgProjectHover);
+        html.style.setProperty('--text-project', textPrimary);
+        html.style.setProperty('--text-project-p', textSecondary);
+        html.style.setProperty('--border-footer', borderFooter);
+        html.style.setProperty('--shadow', `rgba(0,0,0,0.7)`);
+        html.style.setProperty('--skill-dot', skillDot);
+        html.style.setProperty('--skill-filled', skillFilled);
+        html.style.setProperty('--social-color', textSecondary);
+        html.style.setProperty('--avatar-color', accentLight);
+        html.style.setProperty('--icon-color', accent);
+        html.style.setProperty('--tagline-span', accentLight);
+        html.style.setProperty('--gradient-text', gradientText);
+        html.style.setProperty('--bio-span', accentLight);
+        html.style.setProperty('--section-title', textPrimary);
+        html.style.setProperty('--title-icon', accent);
+        html.style.setProperty('--project-icon', accent);
+        html.style.setProperty('--footer-icon', accent);
+        html.style.setProperty('--btn-bg', btnBg);
+        html.style.setProperty('--btn-border', btnBorder);
+        html.style.setProperty('--btn-text', btnText);
+        html.style.setProperty('--btn-shadow', btnShadow);
+        html.style.setProperty('--hobby-bg', hobbyBg);
+        html.style.setProperty('--hobby-border', hobbyBorder);
+        html.style.setProperty('--hobby-text', hobbyText);
+        html.style.setProperty('--hobby-icon', hobbyIcon);
+      }
+    }
+
+    function resetRandomStyles() {
+      const props = [
+        '--bg-body', '--bg-container', '--border-container', '--bg-avatar',
+        '--avatar-border', '--text-primary', '--text-secondary', '--text-bio',
+        '--text-skill', '--text-footer', '--bg-bio', '--border-bio',
+        '--bg-skill', '--border-skill', '--bg-skill-hover', '--bg-project',
+        '--border-project', '--bg-project-hover', '--text-project',
+        '--text-project-p', '--border-footer', '--shadow', '--skill-dot',
+        '--skill-filled', '--social-color', '--avatar-color', '--icon-color',
+        '--tagline-span', '--gradient-text', '--bio-span', '--section-title',
+        '--title-icon', '--project-icon', '--footer-icon', '--btn-bg',
+        '--btn-border', '--btn-text', '--btn-shadow', '--hobby-bg',
+        '--hobby-border', '--hobby-text', '--hobby-icon'
+      ];
+      props.forEach(prop => html.style.removeProperty(prop));
+    }
+  })();
+</script>
+
+</body>
+</html>
